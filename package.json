@@ -1,0 +1,72 @@
+{
+  "name": "express-maintenance-mode",
+  "description": "Express middleware that allows you to put the server(s) in maintenance mode",
+  "version": "1.0.0",
+  "author": "George Lykuanov <dmail@eml.cc> ()",
+  "bugs": {
+    "url": "https://github.com/dissfall/express-maintenance-mode/issues",
+    "email": "dmail@eml.cc"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "contributors": [
+    "George Lykuanov <dmail@eml.cc> ()"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "ava": "latest",
+    "codecov": "latest",
+    "cross-env": "latest",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "latest",
+    "eslint-config-xo-lass": "latest",
+    "fixpack": "latest",
+    "husky": "^6.0.0",
+    "lint-staged": "latest",
+    "nyc": "latest",
+    "remark-cli": "latest",
+    "remark-preset-github": "latest",
+    "xo": "latest"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "homepage": "https://github.com/dissfall/express-maintenance-mode",
+  "keywords": [
+    "express",
+    "maintain",
+    "maintenance",
+    "middleware"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dissfall/express-maintenance-mode"
+  },
+  "scripts": {
+    "lint": "yarn run lint:ts && yarn run lint:md",
+    "lint:md": "remark . -fo",
+    "lint:ts": "xo --fix",
+    "prepare": "husky install",
+    "pretest": "yarn run lint",
+    "test": "true"
+  },
+  "xo": {
+    "prettier": true,
+    "space": true,
+    "extends": [
+      "xo-lass"
+    ],
+    "rules": {
+      "unicorn/filename-case": "off",
+      "new-cap": "off",
+      "no-template-curly-in-string": "off"
+    }
+  }
+}
