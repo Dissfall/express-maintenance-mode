@@ -25,9 +25,10 @@
     "cz-conventional-changelog": "3.3.0",
     "eslint": "latest",
     "eslint-config-xo-lass": "latest",
-    "fixpack": "latest",
+    "fixpack": "^4.0.0",
     "husky": "^6.0.0",
     "lint-staged": "latest",
+    "microbundle": "^0.13.0",
     "nyc": "latest",
     "remark-cli": "latest",
     "remark-preset-github": "latest",
@@ -44,12 +45,13 @@
     "middleware"
   ],
   "license": "Apache-2.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/dissfall/express-maintenance-mode"
   },
   "scripts": {
+    "build": "microbundle",
     "lint": "yarn run lint:ts && yarn run lint:md",
     "lint:md": "remark . -fo",
     "lint:ts": "xo --fix",
@@ -57,6 +59,8 @@
     "pretest": "yarn run lint",
     "test": "true"
   },
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
   "xo": {
     "prettier": true,
     "space": true,
