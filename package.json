@@ -19,6 +19,7 @@
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
+    "@types/express": "^4.17.11",
     "ava": "latest",
     "codecov": "latest",
     "cross-env": "latest",
@@ -46,6 +47,9 @@
   ],
   "license": "Apache-2.0",
   "main": "dist/index.js",
+  "peerDependencies": {
+    "express": "^4.17.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/dissfall/express-maintenance-mode"
@@ -70,7 +74,8 @@
     "rules": {
       "unicorn/filename-case": "off",
       "new-cap": "off",
-      "no-template-curly-in-string": "off"
+      "no-template-curly-in-string": "off",
+      "@typescript-eslint/class-literal-property-style": "off"
     }
   }
 }
