@@ -6,6 +6,7 @@
   "temp-dir": "./.nyc_output",
   "extends": "@istanbuljs/nyc-config-typescript",
   "reporter": [
+    "lcov",
     "text",
     "text-summary"
   ]
