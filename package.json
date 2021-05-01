@@ -1,8 +1,16 @@
 {
   "name": "express-maintenance-mode",
   "description": "Express middleware that allows you to put the server(s) in maintenance mode",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "George Lykuanov <dmail@eml.cc> ()",
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/dissfall/express-maintenance-mode/issues",
     "email": "dmail@eml.cc"
@@ -19,18 +27,26 @@
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/express": "^4.17.11",
+    "@types/sinon": "^10.0.0",
     "ava": "latest",
     "codecov": "latest",
     "cross-env": "latest",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "latest",
     "eslint-config-xo-lass": "latest",
-    "fixpack": "latest",
+    "fixpack": "^4.0.0",
     "husky": "^6.0.0",
     "lint-staged": "latest",
-    "nyc": "latest",
+    "microbundle": "^0.13.0",
+    "nyc": "^15.1.0",
     "remark-cli": "latest",
     "remark-preset-github": "latest",
+    "sinon": "^10.0.0",
+    "source-map-support": "^0.5.19",
+    "standard-version": "^9.2.0",
+    "ts-node": "^9.1.1",
     "xo": "latest"
   },
   "engines": {
@@ -44,19 +60,29 @@
     "middleware"
   ],
   "license": "Apache-2.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "peerDependencies": {
+    "express": "^4.17.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/dissfall/express-maintenance-mode"
   },
   "scripts": {
+    "build": "microbundle",
     "lint": "yarn run lint:ts && yarn run lint:md",
     "lint:md": "remark . -fo",
     "lint:ts": "xo --fix",
     "prepare": "husky install",
-    "pretest": "yarn run lint",
-    "test": "true"
+    "pretest": "yarn lint",
+    "release": "standard-version",
+    "test": "ava",
+    "test:coverage": "nyc ava",
+    "test:nolint": "ava",
+    "test:watch": "ava --watch"
   },
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
   "xo": {
     "prettier": true,
     "space": true,
@@ -66,7 +92,9 @@
     "rules": {
       "unicorn/filename-case": "off",
       "new-cap": "off",
-      "no-template-curly-in-string": "off"
+      "no-template-curly-in-string": "off",
+      "@typescript-eslint/class-literal-property-style": "off",
+      "@typescript-eslint/member-ordering": "off"
     }
   }
 }
