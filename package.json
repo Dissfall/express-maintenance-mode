@@ -45,6 +45,7 @@
     "remark-preset-github": "latest",
     "sinon": "^10.0.0",
     "source-map-support": "^0.5.19",
+    "standard-version": "^9.2.0",
     "ts-node": "^9.1.1",
     "xo": "latest"
   },
@@ -74,6 +75,7 @@
     "lint:ts": "xo --fix",
     "prepare": "husky install",
     "pretest": "yarn lint",
+    "release": "standard-version",
     "test": "ava",
     "test:coverage": "nyc ava",
     "test:nolint": "ava",
