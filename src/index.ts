@@ -3,7 +3,7 @@ import { NextFunction, Request, Response, RequestHandler } from 'express';
 export class ExpressMaintenance<
   MaintenanceResponseBody extends Record<string, any>
 > {
-  private readonly url: string = '/maintenance';
+  private readonly maintenancePath: string = '/maintenance';
   private readonly apiBasePath: string = '/api';
   private readonly accessKey?: string;
   private readonly localMaintenanceStateTTL: number = 60000;
@@ -19,7 +19,7 @@ export class ExpressMaintenance<
 
   constructor(options?: ExpressMaintenanceOptions<MaintenanceResponseBody>) {
     if (options) {
-      this.url = options.url ?? this.url;
+      this.maintenancePath = options.maintenancePath ?? this.maintenancePath;
       this.apiBasePath = options.apiBasePath ?? this.apiBasePath;
       this.accessKey = options.accessKey ?? this.accessKey;
       this.localMaintenanceStateTTL =
@@ -142,7 +142,7 @@ export class ExpressMaintenance<
   }
 
   private isMaintenanceRequest(request: Request): boolean {
-    const urlRegExp = new RegExp(`${this.url}$`);
+    const urlRegExp = new RegExp(`${this.maintenancePath}$`);
     return Boolean(urlRegExp.test(request.path));
   }
 
@@ -156,7 +156,7 @@ export class ExpressMaintenance<
   public getContext(): ExpressMaintenanceOptions<MaintenanceResponseBody> &
     MaintenanceResponseOptions<MaintenanceResponseBody> {
     return {
-      url: this.url,
+      maintenancePath: this.maintenancePath,
       apiBasePath: this.apiBasePath,
       accessKey: this.accessKey,
       localMaintenanceStateTTL: this.localMaintenanceStateTTL,
@@ -201,7 +201,7 @@ export interface MaintenanceResponseOptions<
 export interface ExpressMaintenanceOptions<
   MaintenanceResponseBody extends Record<string, any>
 > {
-  url?: string;
+  maintenancePath?: string;
   apiBasePath?: string;
   accessKey?: string;
   localMaintenanceStateTTL?: number;
