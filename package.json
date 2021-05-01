@@ -3,6 +3,14 @@
   "description": "Express middleware that allows you to put the server(s) in maintenance mode",
   "version": "1.0.0",
   "author": "George Lykuanov <dmail@eml.cc> ()",
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/dissfall/express-maintenance-mode/issues",
     "email": "dmail@eml.cc"
@@ -19,7 +27,9 @@
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/express": "^4.17.11",
+    "@types/sinon": "^10.0.0",
     "ava": "latest",
     "codecov": "latest",
     "cross-env": "latest",
@@ -30,9 +40,12 @@
     "husky": "^6.0.0",
     "lint-staged": "latest",
     "microbundle": "^0.13.0",
-    "nyc": "latest",
+    "nyc": "^15.1.0",
     "remark-cli": "latest",
     "remark-preset-github": "latest",
+    "sinon": "^10.0.0",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^9.1.1",
     "xo": "latest"
   },
   "engines": {
@@ -60,8 +73,11 @@
     "lint:md": "remark . -fo",
     "lint:ts": "xo --fix",
     "prepare": "husky install",
-    "pretest": "yarn run lint",
-    "test": "true"
+    "pretest": "yarn lint",
+    "test": "ava",
+    "test:coverage": "nyc ava",
+    "test:nolint": "ava",
+    "test:watch": "ava --watch"
   },
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
@@ -75,7 +91,8 @@
       "unicorn/filename-case": "off",
       "new-cap": "off",
       "no-template-curly-in-string": "off",
-      "@typescript-eslint/class-literal-property-style": "off"
+      "@typescript-eslint/class-literal-property-style": "off",
+      "@typescript-eslint/member-ordering": "off"
     }
   }
 }
