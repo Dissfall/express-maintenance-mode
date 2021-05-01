@@ -1,0 +1,23 @@
+#source
+src
+
+#tests
+test
+coverage
+
+#build tools
+.nycrc
+.huskyrc
+.husky
+
+#linters
+.eslintrc*
+.perttierrc
+.remarkrc
+.remarkignore
+.lintstagedrc.js
+.editorconfig
+
+#editor settings
+.idea
+.editorconfig
