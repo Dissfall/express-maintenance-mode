@@ -1,7 +1,7 @@
 {
   "name": "express-maintenance-mode",
   "description": "Express middleware that allows you to put the server(s) in maintenance mode",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "George Lykuanov <dmail@eml.cc> ()",
   "ava": {
     "extensions": [
