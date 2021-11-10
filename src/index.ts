@@ -28,6 +28,12 @@ export class ExpressMaintenance<
         options.getExternalMaintenanceState ?? this.getExternalMaintenanceState;
       this.setExternalMaintenanceState =
         options.setExternalMaintenanceState ?? this.setExternalMaintenanceState;
+      if (options.maintenanceResponseOptions) {
+        this.maintenanceResponseOptions = {
+          ...this.maintenanceResponseOptions,
+          ...options.maintenanceResponseOptions
+        };
+      }
     }
 
     this.lastStateUpdateTimestamp = new Date();
@@ -39,6 +45,10 @@ export class ExpressMaintenance<
 
       if (this.isServerInMaintenanceMode() && this.isApiRequest(request)) {
         response.status(this.maintenanceResponseOptions.statusCode);
+        if (typeof this.maintenanceResponseOptions.body === 'string') {
+          return response.send(this.maintenanceResponseOptions.body);
+        }
+
         return response.json(this.maintenanceResponseOptions.body);
       }
 
@@ -195,7 +205,7 @@ export interface MaintenanceResponseOptions<
   MaintenanceResponseBody extends Record<string, any>
 > {
   statusCode?: number;
-  body?: MaintenanceResponseBody;
+  body?: MaintenanceResponseBody | any;
 }
 
 export interface ExpressMaintenanceOptions<
@@ -207,4 +217,5 @@ export interface ExpressMaintenanceOptions<
   localMaintenanceStateTTL?: number;
   getExternalMaintenanceState?: GetExternalMaintenanceStateFunction<MaintenanceResponseBody>;
   setExternalMaintenanceState?: SetExternalMaintenanceStateFunction<MaintenanceResponseBody>;
+  maintenanceResponseOptions?: MaintenanceResponseOptions<MaintenanceResponseBody>;
 }
