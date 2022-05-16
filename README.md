@@ -69,6 +69,10 @@ const maintenance = new ExpressMaintenanceMode<MaintenanceResponseBody>({
     // Your method to set external state
   },
   localMaintenanceStateTTL: 6000 // Lifetime of local maintenance state, until it be synced with external state
+  maintenanceResponseOptions: { // Optional
+    statusCode: 302, // Default to 503
+    body: fs.readdirSync('path/to/maintenance/index.html').toString()
+  }
 });
 
 // Optional
